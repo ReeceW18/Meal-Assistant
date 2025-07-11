@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Meal-Assistant")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+285b94e820bed54de791f441dc9c7463e786f938")]
 [assembly: System.Reflection.AssemblyProductAttribute("Meal-Assistant")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Meal-Assistant")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
