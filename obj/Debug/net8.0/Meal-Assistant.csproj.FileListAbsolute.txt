@@ -1,0 +1,14 @@
+/home/reece/Documents/Programming/C#/Meal-Assistant/bin/Debug/net8.0/Meal-Assistant
+/home/reece/Documents/Programming/C#/Meal-Assistant/bin/Debug/net8.0/Meal-Assistant.deps.json
+/home/reece/Documents/Programming/C#/Meal-Assistant/bin/Debug/net8.0/Meal-Assistant.runtimeconfig.json
+/home/reece/Documents/Programming/C#/Meal-Assistant/bin/Debug/net8.0/Meal-Assistant.dll
+/home/reece/Documents/Programming/C#/Meal-Assistant/bin/Debug/net8.0/Meal-Assistant.pdb
+/home/reece/Documents/Programming/C#/Meal-Assistant/obj/Debug/net8.0/Meal-Assistant.GeneratedMSBuildEditorConfig.editorconfig
+/home/reece/Documents/Programming/C#/Meal-Assistant/obj/Debug/net8.0/Meal-Assistant.AssemblyInfoInputs.cache
+/home/reece/Documents/Programming/C#/Meal-Assistant/obj/Debug/net8.0/Meal-Assistant.AssemblyInfo.cs
+/home/reece/Documents/Programming/C#/Meal-Assistant/obj/Debug/net8.0/Meal-Assistant.csproj.CoreCompileInputs.cache
+/home/reece/Documents/Programming/C#/Meal-Assistant/obj/Debug/net8.0/Meal-Assistant.dll
+/home/reece/Documents/Programming/C#/Meal-Assistant/obj/Debug/net8.0/refint/Meal-Assistant.dll
+/home/reece/Documents/Programming/C#/Meal-Assistant/obj/Debug/net8.0/Meal-Assistant.pdb
+/home/reece/Documents/Programming/C#/Meal-Assistant/obj/Debug/net8.0/Meal-Assistant.genruntimeconfig.cache
+/home/reece/Documents/Programming/C#/Meal-Assistant/obj/Debug/net8.0/ref/Meal-Assistant.dll
