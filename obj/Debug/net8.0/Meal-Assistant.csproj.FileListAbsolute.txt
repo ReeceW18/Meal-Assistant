@@ -12,3 +12,4 @@
 /home/reece/Documents/Programming/C#/Meal-Assistant/obj/Debug/net8.0/Meal-Assistant.pdb
 /home/reece/Documents/Programming/C#/Meal-Assistant/obj/Debug/net8.0/Meal-Assistant.genruntimeconfig.cache
 /home/reece/Documents/Programming/C#/Meal-Assistant/obj/Debug/net8.0/ref/Meal-Assistant.dll
+/home/reece/Documents/Programming/C#/Meal-Assistant/obj/Debug/net8.0/Meal-Assistant.sourcelink.json
