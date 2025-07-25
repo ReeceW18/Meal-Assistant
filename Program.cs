@@ -1,4 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿// Meal Assistant CLI
 
 namespace MealAssistant
 {
@@ -6,14 +6,16 @@ namespace MealAssistant
     {
         static void Main()
         {
-            bool running = true;
+            // set up variables
             string currentMessage = "Welcome!";
             string appDataDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string directory = Path.Combine(appDataDir, "MealAssistant");
             Directory.CreateDirectory(directory);
             string saveFile = Path.Combine(directory, "saveData.json");
             MealAssistant mealAssistant;
+            bool isRunning = true;
 
+            // initialize mealAssistant, either from save if exists or empty if no save
             if (File.Exists(saveFile))
             {
                 mealAssistant = new MealAssistant(saveFile);
@@ -23,28 +25,69 @@ namespace MealAssistant
                 mealAssistant = new MealAssistant();
             }
 
-            while (running)
+            // main loop
+            while (isRunning)
             {
                 Console.Clear();
 
                 Console.WriteLine(currentMessage + "\n");
 
-                ShowRecommendations();
-
+                mealAssistant.ShowRecommendations();
                 Console.WriteLine();
 
                 Console.WriteLine("Enter a command (hint: type help to see commands)");
                 Console.Write("> ");
+
                 string? inputRaw = Console.ReadLine();
                 string input = inputRaw != null ? inputRaw.Trim().ToLower() : string.Empty;
+                string[] command = input.Split();
+
+                bool isValidCommand = CheckValid(command);
+                if (!isValidCommand)
+                {
+                    command = [ "invalid" ];
+                }
 
                 Console.Clear();
-                switch (input)
+                // run command and update current message
+                switch (command[0])
                 {
                     //implement commands
                     case "help":
                         showHelp();
                         currentMessage = "Exited help menu";
+                        break;
+                    case "add":
+                        mealAssistant.Add(input.Replace("add ", ""));
+                        currentMessage = "added " + input.Replace("add ", "");
+                        break;
+                    case "update":
+                        mealAssistant.Update(input.Replace("update ", ""));
+                        currentMessage = "updated " + input.Replace("update ", "");
+                        
+                        break;
+                    case "modify":
+                        currentMessage = command[0] + " not yet implemented";
+                        mealAssistant.Modify(input.Replace("modify ", ""));
+                        break;
+                    case "info":
+                        currentMessage = input.Replace("info ", "") + "info shown";
+                        mealAssistant.Show(input.Replace("info ", ""));
+                        break;
+                    case "quit":
+                        SaveManager.SaveTo(saveFile, mealAssistant.meals);
+                        isRunning = false;
+                        break;
+                    case "showall":
+                        mealAssistant.ShowAll();
+                        currentMessage = "Information shown";
+                        break;
+                    case "save":
+                        SaveManager.SaveTo(saveFile, mealAssistant.meals);
+                        currentMessage = "Saved to file";
+                        break;
+                    case "breakdown":
+                        mealAssistant.Breakdown(input.Replace("breakdown ", ""));
                         break;
                     default:
                         currentMessage = "Invalid command";
@@ -54,37 +97,58 @@ namespace MealAssistant
             }
         }
 
-        static void ShowRecommendations()
-        {
-            //implement
-            Console.WriteLine("Recommendation display not implemented");
-        }
 
+        // returns true if command is a valid single command or has multiple elements
+        static bool CheckValid(string[] command)
+        {
+            // list of valid single commands
+            string[] singleCommands = ["help", "quit", "showall", "save"];
+
+            // check if is single command
+            foreach (var validSingleCommand in singleCommands)
+            {
+                if (command[0] == validSingleCommand) {
+                    return true;
+                }
+            }
+
+            // check if has multiple elements, return false if it doesn't
+            if (command.Length < 2)
+            {
+                return false;
+            }
+
+            // return true if not a single command but has multiple elements
+            return true;
+       }
+
+        // help menu that displays commands
         static void showHelp()
         {
+            // list of commands with explanations
             string[] commands = {
-                "command1 - example",
-                "command2 - example2" };
+                "quit - save data and terminate program",
+                "save - save data",
+                "add mealName - add a new meal with name mealName",
+                "update mealName - update the last ate date for mealName",
+                "showall - display all stored meals",
+                "modify mealName - change properties of mealName",
+                "breakdown mealType - get a comprehensive review of recommendations for mealType",
+                "   mealType Options: Breakfast, Lunch, Snack, Dinner",
+                "info mealName - get all properties of mealName" };
 
+            // formatting
             Console.WriteLine("HELP MENU\nCommands:");
 
+            // write each command
             foreach (var command in commands)
             {
-                Console.WriteLine("     " + command);
+                Console.WriteLine("   " + command);
             }
 
-            try
-            {
-                Console.WriteLine("Press any key to return to main menu"); 
-                Console.ReadKey(true);
-            }
-            catch (InvalidOperationException)
-            {
-                Console.WriteLine("DEBUG MODE OR OTHERWISE NO CONSOLE. Press Enter to return to main menu");
-                Console.ReadLine();
-            }
+            Utils.WaitForKeyPress();
 
         }
 
-    }
+   }
 }
