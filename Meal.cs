@@ -41,14 +41,15 @@ namespace MealAssistant
 
         public void UpdateScore()
         {
-            double daysSinceEaten = (DateTime.Now - LastEaten).TotalDays;
+            double daysSinceEaten = (DateTime.Today - LastEaten).TotalDays;
 
             if (daysSinceEaten < 3)
             {
                 daysSinceEaten = 0;
             }
 
-            Score = Preference * Math.Log(daysSinceEaten + 1);
+            // Score = Preference * Math.Log(daysSinceEaten + 1);
+            Score = Preference * Math.Pow(daysSinceEaten, 2);
         }
 
         public void UpdateDate(DateTime? date = null)
